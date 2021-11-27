@@ -47,6 +47,7 @@ class AddProject extends Component {
                     // set onChange on each input field
                     // bind on constructor
                     // check state change in the react extension
+                    // formatting code & components
                 }
                 <div className="project">
                     <div className="container">
