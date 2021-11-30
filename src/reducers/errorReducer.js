@@ -1,7 +1,9 @@
 import {GET_ERRORS} from "../actions/types";
 
 
-const initialState = {}
+const initialState = {
+
+}
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {
