@@ -10,7 +10,7 @@ const config = {
 
 export const createProject = (project, history) => async dispatch => {
     try {
-        const response = await axios.post("http://localhost:8080/api/project", project)
+        await axios.post("http://localhost:8080/api/project", project);
         history.push("/dashboard")
 
         dispatch({
