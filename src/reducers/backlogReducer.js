@@ -24,8 +24,7 @@ export default function (state= initialState, action) {
         case DELETE_PROJECT_TASK:
             return {
                 ...state,
-
-                // TODO
+                projectTasks: state.projectTasks.filter(projectTask => projectTask.projectSequence !== action.payload)
             }
         default:
             return state
