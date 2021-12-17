@@ -5,7 +5,29 @@ class Backlog extends Component {
     render() {
         const {projectTasks} = this.props
 
-        const projectTaskItems = projectTasks.map(taskItem =>
+        let todoTasks = []
+        let inProgressTasks = []
+        let doneTasks = []
+
+        projectTasks.forEach(projectTask => {
+            const {status} = projectTask
+            switch (status) {
+                case "TO_DO": todoTasks.push(projectTask)
+                    break
+                case "IN_PROGRESS": inProgressTasks.push(projectTask)
+                    break
+                case "DONE": doneTasks.push(projectTask)
+                    break
+            }
+        })
+
+        const projectTasksTodo = todoTasks.map(taskItem =>
+            <ProjectTask key={taskItem.id} projectTask={taskItem} />)
+
+        const projectTasksInProgress = inProgressTasks.map(taskItem =>
+            <ProjectTask key={taskItem.id} projectTask={taskItem} />)
+
+        const projectTasksDone = doneTasks.map(taskItem =>
             <ProjectTask key={taskItem.id} projectTask={taskItem} />)
 
         return (
@@ -17,7 +39,7 @@ class Backlog extends Component {
                                 <h3>TO DO</h3>
                             </div>
                         </div>
-                        {projectTaskItems}
+                        {projectTasksTodo}
                     </div>
                     <div className="col-md-4">
                         <div className="card text-center mb-2">
@@ -25,9 +47,7 @@ class Backlog extends Component {
                                 <h3>In Progress</h3>
                             </div>
                         </div>
-                        {/*// <!-- SAMPLE PROJECT TASK STARTS HERE -->*/}
-
-                        {/*// <!-- SAMPLE PROJECT TASK ENDS HERE -->*/}
+                        {projectTasksInProgress}
                     </div>
                     <div className="col-md-4">
                         <div className="card text-center mb-2">
@@ -35,9 +55,7 @@ class Backlog extends Component {
                                 <h3>Done</h3>
                             </div>
                         </div>
-                        {/*// <!-- SAMPLE PROJECT TASK STARTS HERE -->*/}
-
-                        {/*// <!-- SAMPLE PROJECT TASK ENDS HERE -->*/}
+                        {projectTasksDone}
                     </div>
                 </div>
             </div>
