@@ -1,7 +1,27 @@
 import React, {Component} from 'react';
 import Link from "react-router-dom/Link";
+import {connect} from 'react-redux'
+import {addProjectTask} from "../../../actions/backlogActions";
+import PropTypes from "prop-types"
 
 class AddProjectTask extends Component {
+
+    constructor(props) {
+        super(props);
+
+        const {id} = this.props.match.params
+
+        this.state = {
+            summary: "",
+            acceptanceCriteria: "",
+            status: "",
+            priority: "3",
+            dueDate: null,
+            projectIdentifier: id,
+            errors: {}
+        }
+    }
+
     render() {
         const { id } = this.props.match.params
 
@@ -17,18 +37,36 @@ class AddProjectTask extends Component {
                             <p className="lead text-center">Project Name + Project Code</p>
                             <form>
                                 <div className="form-group">
-                                    <input type="text" className="form-control form-control-lg" name="summary"
-                                           placeholder="Project Task summary"/>
+                                    <input
+                                        type="text"
+                                        className="form-control form-control-lg"
+                                        name="summary"
+                                        placeholder="Project Task summary"
+                                        value={this.state.summary}
+                                    />
                                 </div>
                                 <div className="form-group">
-                                    <textarea className="form-control form-control-lg" placeholder="Acceptance Criteria" name="acceptanceCriteria"/>
+                                    <textarea
+                                        className="form-control form-control-lg"
+                                        placeholder="Acceptance Criteria"
+                                        name="acceptanceCriteria"
+                                        value={this.state.acceptanceCriteria}
+                                    />
                                 </div>
                                 <h6>Due Date</h6>
                                 <div className="form-group">
-                                    <input type="date" className="form-control form-control-lg" name="dueDate"/>
+                                    <input
+                                        type="date"
+                                        className="form-control form-control-lg"
+                                        name="dueDate"
+                                        value={this.state.dueDate}
+                                    />
                                 </div>
                                 <div className="form-group">
-                                    <select className="form-control form-control-lg" name="priority">
+                                    <select
+                                        className="form-control form-control-lg"
+                                        name="priority"
+                                        value={this.state.priority}>
                                         <option value={0}>Select Priority</option>
                                         <option value={1}>High</option>
                                         <option value={2}>Medium</option>
@@ -37,14 +75,16 @@ class AddProjectTask extends Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <select className="form-control form-control-lg" name="status">
+                                    <select
+                                        className="form-control form-control-lg"
+                                        name="status"
+                                        value={this.state.status}>
                                         <option value="">Select Status</option>
                                         <option value="TO_DO">TO DO</option>
                                         <option value="IN_PROGRESS">IN PROGRESS</option>
                                         <option value="DONE">DONE</option>
                                     </select>
                                 </div>
-
                                 <input type="submit" className="btn btn-primary btn-block mt-4"/>
                             </form>
                         </div>
@@ -55,4 +95,8 @@ class AddProjectTask extends Component {
     }
 }
 
-export default AddProjectTask;
+AddProjectTask.propTypes = {
+    addProjectTask: PropTypes.func.isRequired
+}
+
+export default connect(null, {addProjectTask})(AddProjectTask);
