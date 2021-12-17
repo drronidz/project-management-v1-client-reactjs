@@ -17,6 +17,9 @@ class UpdateProject extends Component {
             endDate: "",
             errors: {}
         };
+
+        this.onChange = this.onChange.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
@@ -43,8 +46,7 @@ class UpdateProject extends Component {
             endDate
         })
 
-        this.onChange = this.onChange.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
+
     }
 
     componentDidMount() {
