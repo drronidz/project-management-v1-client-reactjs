@@ -3,39 +3,44 @@ import ProjectTask from "./projecttask/ProjectTask";
 
 class Backlog extends Component {
     render() {
+        const {projectTasks} = this.props
+
+        const projectTaskItems = projectTasks.map(taskItem =>
+            <ProjectTask key={taskItem.id} projectTask={taskItem} />)
+
         return (
-        <div className="container">
-            <div className="row">
-                <div className="col-md-4">
-                    <div className="card text-center mb-2">
-                        <div className="card-header bg-secondary text-white">
-                            <h3>TO DO</h3>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-4">
+                        <div className="card text-center mb-2">
+                            <div className="card-header bg-secondary text-white">
+                                <h3>TO DO</h3>
+                            </div>
                         </div>
+                        {projectTaskItems}
                     </div>
-                    <ProjectTask/>
-                </div>
-                <div className="col-md-4">
-                    <div className="card text-center mb-2">
-                        <div className="card-header bg-primary text-white">
-                            <h3>In Progress</h3>
+                    <div className="col-md-4">
+                        <div className="card text-center mb-2">
+                            <div className="card-header bg-primary text-white">
+                                <h3>In Progress</h3>
+                            </div>
                         </div>
-                    </div>
-                    {/*// <!-- SAMPLE PROJECT TASK STARTS HERE -->*/}
+                        {/*// <!-- SAMPLE PROJECT TASK STARTS HERE -->*/}
 
-                    {/*// <!-- SAMPLE PROJECT TASK ENDS HERE -->*/}
-                </div>
-                <div className="col-md-4">
-                    <div className="card text-center mb-2">
-                        <div className="card-header bg-success text-white">
-                            <h3>Done</h3>
-                        </div>
+                        {/*// <!-- SAMPLE PROJECT TASK ENDS HERE -->*/}
                     </div>
-                    {/*// <!-- SAMPLE PROJECT TASK STARTS HERE -->*/}
+                    <div className="col-md-4">
+                        <div className="card text-center mb-2">
+                            <div className="card-header bg-success text-white">
+                                <h3>Done</h3>
+                            </div>
+                        </div>
+                        {/*// <!-- SAMPLE PROJECT TASK STARTS HERE -->*/}
 
-                    {/*// <!-- SAMPLE PROJECT TASK ENDS HERE -->*/}
+                        {/*// <!-- SAMPLE PROJECT TASK ENDS HERE -->*/}
+                    </div>
                 </div>
             </div>
-        </div>
         );
     }
 }
